@@ -1,15 +1,62 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Scanner;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+import Busqueda.*;
+import Ordenamiento.*;
+import Util.*;
+
+public class Main {
+
+    private static final int PEQUENO = 100;
+    private static final int MEDIANO = 1000;
+    private static final int GRANDE = 10000;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+
+        do {
+            mostrarMenu();
+            opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1 -> probarOrdenamientos();
+                case 2 -> probarBusquedas();
+                case 3 -> System.out.println("Fin del programa");
+                default -> System.out.println("Opcion invalida");
+            }
+        } while (opcion != 3);
+    }
+
+    private static void mostrarMenu() {
+        System.out.println("\nTodos los resultados obtenidos estan expresados en nano-segundos (ns)");
+        System.out.println("\n1. Ordenamientos");
+        System.out.println("2. Busquedas");
+        System.out.println("3. Salir");
+        System.out.print("Opcion: ");
+    }
+
+    private static void probarOrdenamientos() {
+        int[] datos = GeneradorDatos.generarAleatorio(MEDIANO);
+
+        System.out.println("Burbuja: " + medir(() -> Burbuja.ordenar(UtilArreglos.copiar(datos))) + " ns"); //resultado de tiempo en nanosegundos
+        System.out.println("Insercion: " + medir(() -> Insercion.ordenar(UtilArreglos.copiar(datos))) + " ns");
+        System.out.println("Seleccion: " + medir(() -> Seleccion.ordenar(UtilArreglos.copiar(datos))) + " ns");
+    }
+
+    private static void probarBusquedas() {
+        int[] datos = GeneradorDatos.generarAleatorio(MEDIANO);
+        int valor = datos[datos.length / 2];
+
+        System.out.println("Secuencial: " + medir(() -> BusquedaSecuencial.buscar(datos, valor)) + " ns");
+
+        int[] copia = UtilArreglos.copiar(datos);
+        Insercion.ordenar(copia);
+        System.out.println("Binaria: " + medir(() -> BusquedaBinaria.buscar(copia, valor)) + " ns");
+    }
+
+    private static long medir(Runnable accion) {
+        long ini = System.nanoTime();
+        accion.run();
+        return System.nanoTime() - ini;
     }
 }
