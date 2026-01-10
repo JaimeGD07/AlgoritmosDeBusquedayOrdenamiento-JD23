@@ -14,19 +14,19 @@ public class GeneradorDatos {
     }
 
     // Datos ordenados (mejor caso)
-    public static int[] generarOrdenado(int tamaño) {
-        int[] arreglo = new int[tamaño];
-        for (int i = 0; i < tamaño; i++) {
+    public static int[] generarOrdenado(int tamanyo) {
+        int[] arreglo = new int[tamanyo];
+        for (int i = 0; i < tamanyo; i++) {
             arreglo[i] = i;
         }
         return arreglo;
     }
 
     // Datos invertidos (peor caso)
-    public static int[] generarInvertido(int tamaño) {
-        int[] arreglo = new int[tamaño];
-        for (int i = 0; i < tamaño; i++) {
-            arreglo[i] = tamaño - i;
+    public static int[] generarInvertido(int tamanyo) {
+        int[] arreglo = new int[tamanyo];
+        for (int i = 0; i < tamanyo; i++) {
+            arreglo[i] = tamanyo - i;
         }
         return arreglo;
     }

@@ -49,7 +49,7 @@ public class Main {
      */
     private static void probarOrdenamientos() {
         // Generamos un arreglo aleatorio de tamaño pequeño, mediano o grande
-        int[] datos = GeneradorDatos.generarAleatorio(MEDIANO);
+        int[] datos = GeneradorDatos.generarAleatorio(GRANDE);
 
         // Medimos cada algoritmo usando una COPIA del arreglo original
         // para que todos ordenen exactamente los mismos datos desordenados
@@ -68,7 +68,7 @@ public class Main {
      */
     private static void probarBusquedas() {
         // Generamos un arreglo aleatorio del tamaño pequeño, mediano o grande
-        int[] datos = GeneradorDatos.generarAleatorio(MEDIANO);
+        int[] datos = GeneradorDatos.generarAleatorio(GRANDE);
         // Buscamos un elemento en una posición aleatoria
         int posicionAleatoria = (int)(Math.random() * datos.length);
         int valor = datos[posicionAleatoria];
