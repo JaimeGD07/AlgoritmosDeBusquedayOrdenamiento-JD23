@@ -15,4 +15,4 @@ y la forma del arreglo a evaluar en los distintos algoritmos mencionados tambien
 ---
 3 - ejecutamos el proyecto con la opcion Run (o tambien shift+f10) o click derecho en el archivo main.java y seleccionamos
 la opcion que deseamos del menu y obtendremos los resultados proporcionado por el tipo de algoritmo que seleccinamos.
-
+---
